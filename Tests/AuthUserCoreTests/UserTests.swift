@@ -76,7 +76,7 @@ final class UserTests: VaporTestCase {
     
     func testAddManyRoles() {
         perform {
-            let user = try createUser()
+            let user = try createUser(User(username: "test", password: "test"))
             XCTAssertEqual(user.roles, ["user"])
             
             let roles = RoleContext(roles: ["custom1", "custom2"])
