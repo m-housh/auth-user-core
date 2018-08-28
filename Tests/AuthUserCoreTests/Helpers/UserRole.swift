@@ -13,13 +13,14 @@ import FluentSQLite
 
 final class TUserRole: SQLiteModel, AnyUserRole, Migration {
    
+    /*
     static var leftIDKey: WritableKeyPath<TUserRole, UUID> {
         return \.userID
     }
     
     static var rightIDKey: WritableKeyPath<TUserRole, Int> {
         return \.roleID
-    }
+    }*/
     
     
     typealias User = TUser

@@ -20,4 +20,15 @@ public protocol AnyUserRole: ModifiablePivot {
     
 }
 
+extension AnyUserRole {
+    
+    public static var leftIDKey: WritableKeyPath<Self, UUID> {
+        return \.userID
+    }
+    
+    public static var rightIDKey: WritableKeyPath<Self, Int> {
+        return \.roleID
+    }
+}
+
 

@@ -34,11 +34,11 @@ public protocol AnyUser: Model, Parameter, Content where Database: JoinSupportin
 
 extension AnyUser {
     
-    static func hashPassword(_ password: String) throws -> String {
+    public static func hashPassword(_ password: String) throws -> String {
         return try BCrypt.hash(password)
     }
     
-    func hasRole(_ role: CustomStringConvertible, on conn: DatabaseConnectable) throws -> Future<Bool> {
+    public func hasRole(_ role: CustomStringConvertible, on conn: DatabaseConnectable) throws -> Future<Bool> {
         return try roles.query(on: conn)
             .filter(\Role.name == role.description)
             .count()
@@ -48,11 +48,11 @@ extension AnyUser {
 
 extension AnyUser where Self: BasicAuthenticatable {
     
-    static var usernameKey: WritableKeyPath<Self, String> {
+    public static var usernameKey: WritableKeyPath<Self, String> {
         return \.username
     }
     
-    static var passwordKey: WritableKeyPath<Self, String> {
+    public static var passwordKey: WritableKeyPath<Self, String> {
         return \.password
     }
 }
