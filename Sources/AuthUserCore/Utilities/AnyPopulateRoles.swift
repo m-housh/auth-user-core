@@ -33,7 +33,7 @@ extension AnyPopulateRoles {
         return Future<Void>.andAll(futures, eventLoop: conn.eventLoop)
     }
     
-    static func revert(on conn: Role.Database.Connection) -> EventLoopFuture<Void> {
+    public static func revert(on conn: Role.Database.Connection) -> EventLoopFuture<Void> {
         
         let futures = names.map { name -> Future<Void> in
             return Role.query(on: conn)
