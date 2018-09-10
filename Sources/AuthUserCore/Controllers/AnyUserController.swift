@@ -109,7 +109,7 @@ extension AnyUserController {
     }
     
     func getByIDHandler(_ request: Request) throws -> Future<PublicUserType> {
-        return try collection.getByIdHandler(request).public()
+        return try collection.getByIdHandler(request).public(on: request)
     }
     
     func updateHandler(_ request: Request) throws -> Future<PublicUserType> {
