@@ -22,24 +22,22 @@ public protocol AnyRoleController: RouteCollection {
 
 extension AnyRoleController {
     
-    var collection: ModelRouteCollection<RoleType> {
+    public var collection: ModelRouteCollection<RoleType> {
         return ModelRouteCollection(RoleType.self, path: path, using: middleware)
     }
     
-    func boot(router: Router) throws {
+    public func boot(router: Router) throws {
         try collection.boot(router: router)
         
         let grouped = router.grouped(middleware ?? [])
         grouped.post(path, "findOrCreate", use: findOrCreate)
-        
-        
     }
 }
 
 /// Handlers
 extension AnyRoleController {
     
-    func findOrCreate(_ request: Request) throws -> Future<RoleType> {
+    public func findOrCreate(_ request: Request) throws -> Future<RoleType> {
         return try request.content.decode(RoleType.self).flatMap { role in
             return try RoleType.findOrCreate(role.name, on: request)
         }
